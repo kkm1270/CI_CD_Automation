@@ -3,6 +3,7 @@ import pytest
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from pages.page_1 import saucelabs
+import json
 
 
 def test_case_1(driver):
