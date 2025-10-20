@@ -1,22 +1,76 @@
 import pytest
 from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.chrome.service import Service
-from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.firefox.options import Options
+from selenium.webdriver.firefox.service import Service
+from webdriver_manager.firefox import GeckoDriverManager
 
 @pytest.fixture(scope='session')
 def driver():
     options = Options()
-    # Optional: run in headless if in CI
-    options.add_argument('--headless')
-    options.add_argument('--disable-gpu')
-    options.add_argument('--no-sandbox')
-    
+    options.add_argument('-headless')  # Enable headless mode
     # Initialize driver with webdriver-manager
-    service = Service(ChromeDriverManager().install())
-    driver = webdriver.Chrome(service=service, options=options)
+    service = Service(GeckoDriverManager().install())
+    driver = webdriver.Firefox(service=service, options=options)
+    driver.maximize_window()  # Optional: may not affect headless mode
     yield driver
     driver.quit()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# import pytest
+# from selenium import webdriver
+# from selenium.webdriver.chrome.options import Options
+# from selenium.webdriver.chrome.service import Service
+# from webdriver_manager.chrome import ChromeDriverManager
+
+# @pytest.fixture(scope='session')
+# def driver():
+#     options = Options()
+#     # Optional: run in headless if in CI
+#     options.add_argument('--headless')
+#     options.add_argument('--disable-gpu')
+#     options.add_argument('--no-sandbox')
+    
+#     # Initialize driver with webdriver-manager
+#     service = Service(ChromeDriverManager().install())
+#     driver = webdriver.Chrome(service=service, options=options)
+#     yield driver
+#     driver.quit()
 
 
 
@@ -72,29 +126,6 @@ def driver():
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 # import pytest
 # import time
 # from selenium import webdriver
@@ -102,7 +133,7 @@ def driver():
 
 # @pytest.fixture(scope='session')
 # def driver():
-#     driver=webdriver.Edge()
+#     driver=webdriver.Firefox()
 #     driver.maximize_window()
 #     yield driver
 #     driver.quit()
