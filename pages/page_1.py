@@ -29,4 +29,5 @@ class saucelabs:
         time.sleep(1)
         logout_button.click()
         WebDriverWait(self.driver,10).until(EC.visibility_of_element_located,login_button)
+        self.driver.implicitly_wait(10)
     
