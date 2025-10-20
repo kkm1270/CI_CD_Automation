@@ -1,21 +1,90 @@
 import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
-import tempfile
+from selenium.webdriver.chrome.service import Service
+from webdriver_manager.chrome import ChromeDriverManager
 
 @pytest.fixture(scope='session')
 def driver():
     options = Options()
-    # Create a temporary directory for Edge user data
-    user_data_dir = tempfile.mkdtemp()
-    options.add_argument(f'--user-data-dir={user_data_dir}')
     # Optional: run in headless if in CI
-    options.add_argument('--headless')
+    #options.add_argument('--headless')
     options.add_argument('--disable-gpu')
     options.add_argument('--no-sandbox')
-    driver = webdriver.Chrome(options=options)
+    
+    # Preferences to disable password manager and leak detection
+    prefs = {
+        "credentials_enable_service": False,
+        "profile.password_manager_enabled": False,
+        "profile.password_manager_leak_detection": False  # Disables the "Change Your Password" popup
+    }
+    options.add_experimental_option("prefs", prefs)
+    
+    # Initialize driver with webdriver-manager
+    service = Service(ChromeDriverManager().install())
+    driver = webdriver.Chrome(service=service, options=options)
     yield driver
     driver.quit()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# import pytest
+# from selenium import webdriver
+# from selenium.webdriver.chrome.options import Options
+# import tempfile
+
+# @pytest.fixture(scope='session')
+# def driver():
+#     options = Options()
+#     # Create a temporary directory for Edge user data
+#     user_data_dir = tempfile.mkdtemp()
+#     options.add_argument(f'--user-data-dir={user_data_dir}')
+#     # Optional: run in headless if in CI
+#     #options.add_argument('--headless')
+#     options.add_argument('--disable-gpu')
+#     options.add_argument('--no-sandbox')
+#     driver = webdriver.Chrome(options=options)
+#     yield driver
+#     driver.quit()
 
 
 
