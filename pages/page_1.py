@@ -13,19 +13,21 @@ class saucelabs:
         url="https://www.saucedemo.com/"
         self.driver.get(url)
         self.driver.implicitly_wait(10)
+        print(f"{self.driver.current_url}")
         username=self.driver.find_element(By.ID,"user-name")
         password=self.driver.find_element(By.ID,"password")
         login_button=self.driver.find_element(By.ID,"login-button")
         username.send_keys("visual_user")
         password.send_keys("secret_sauce")
         login_button.click()
+        print(f"{self.driver.current_url}")
         self.driver.implicitly_wait(10)
     def logout(self):
         self.driver.implicitly_wait(10)
         menu_button=self.driver.find_element(By.ID,"react-burger-menu-btn")
         logout_button=self.driver.find_element(By.ID,"logout_sidebar_link")
         menu_button.click()
-        time.sleep(1)
         logout_button.click()
+        print(f"{self.driver.current_url}")
         self.driver.implicitly_wait(10)
     

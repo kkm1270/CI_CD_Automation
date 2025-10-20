@@ -12,14 +12,6 @@ def driver():
     options.add_argument('--disable-gpu')
     options.add_argument('--no-sandbox')
     
-    # Preferences to disable password manager and leak detection
-    prefs = {
-        "credentials_enable_service": False,
-        "profile.password_manager_enabled": False,
-        "profile.password_manager_leak_detection": False  # Disables the "Change Your Password" popup
-    }
-    options.add_experimental_option("prefs", prefs)
-    
     # Initialize driver with webdriver-manager
     service = Service(ChromeDriverManager().install())
     driver = webdriver.Chrome(service=service, options=options)
@@ -52,20 +44,6 @@ def driver():
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-###############correct_code############################
 
 # import pytest
 # from selenium import webdriver
