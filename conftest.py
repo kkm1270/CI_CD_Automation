@@ -1,5 +1,6 @@
 import pytest
 from selenium import webdriver
+import random
 from selenium.webdriver.chrome.options import Options
 import tempfile
 
