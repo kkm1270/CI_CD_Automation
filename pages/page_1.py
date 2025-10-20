@@ -21,11 +21,12 @@ class saucelabs:
         login_button.click()
         self.driver.implicitly_wait(10)
     def logout(self):
+        login_button=self.driver.find_element(By.ID,"login-button")
         self.driver.implicitly_wait(10)
         menu_button=self.driver.find_element(By.ID,"react-burger-menu-btn")
         logout_button=self.driver.find_element(By.ID,"logout_sidebar_link")
         menu_button.click()
         time.sleep(1)
         logout_button.click()
-        self.driver.implicitly_wait(10)
+        WebDriverWait(self.driver,10).until(EC.visibility_of_element_located,login_button)
     
